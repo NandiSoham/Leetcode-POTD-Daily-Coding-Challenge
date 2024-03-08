@@ -26,3 +26,30 @@ public:
 // Space Complexity -> O(101) ~ O(1)
 
 //--------------------------------------------------------------------------------------------
+
+//------------------------------- Approach - 2 with 1 pass------------------------------------
+
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+        int maxFreq = 0;
+        int totalMaxFreq = 0;
+        vector<int> arr(101);
+
+        for(int &it : nums){
+            arr[it]++;
+            int freq = arr[it];
+
+            if(freq > maxFreq){
+                maxFreq = freq;
+                totalMaxFreq = freq;
+            } else if(freq == maxFreq) totalMaxFreq += maxFreq;
+        }
+        return totalMaxFreq;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+// Problem Link -> https://leetcode.com/problems/count-elements-with-maximum-frequency/description/
