@@ -24,3 +24,29 @@ public:
 // Space Complexity -> O(n + m)
 
 //---------------------------------------------------------------------------------------------
+
+//--------------------------------- Approach - 1 (Using two set) ------------------------------
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_set<int> set1(nums1.begin(), nums1.end());
+        vector<int> uniqueElementArray;
+        
+        for(int &it : nums2){
+            if(set1.find(it) != set1.end()){
+                uniqueElementArray.push_back(it);
+                set1.erase(it);
+            }
+        }
+
+        return uniqueElementArray;
+    }
+};
+
+
+// Time Complexity -> O(n + m)
+// Space Complexity -> O(n + m)
+
+//---------------------------------------------------------------------------------------------
+
