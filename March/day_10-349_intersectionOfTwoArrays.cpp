@@ -25,7 +25,7 @@ public:
 
 //---------------------------------------------------------------------------------------------
 
-//--------------------------------- Approach - 1 (Using two set) ------------------------------
+//--------------------------------- Optimised Approach - 1 (Using one set) --------------------
 
 class Solution {
 public:
@@ -50,3 +50,34 @@ public:
 
 //---------------------------------------------------------------------------------------------
 
+//--------------------------------- Approach -2 (Using Two Pointers) --------------------------
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        int n = nums1.size(), m = nums2.size();
+        int ptr1 = 0, ptr2 = 0;
+        vector<int> intersectionArr;
+
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+
+        while(ptr1 < n && ptr2 < m){
+            if(nums1[ptr1] == nums2[ptr2]){
+                intersectionArr.push_back(nums1[ptr1]);
+
+                while(ptr1 < n-1 && nums1[ptr1] == nums1[ptr1 + 1]) ptr1++;
+                while(ptr2 < m-1 && nums2[ptr2] == nums2[ptr2 + 1]) ptr2++;
+                ptr1++, ptr2++;
+            } else if(nums1[ptr1] < nums2[ptr2]) ptr1++;
+            else ptr2++;
+        }
+        return intersectionArr;
+    }
+};
+
+
+// Time Coplexity -> O(n + m)
+// Space Complexity -> O(1)
+
+//---------------------------------------------------------------------------------------------
