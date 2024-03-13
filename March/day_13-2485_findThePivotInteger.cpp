@@ -1,5 +1,58 @@
 // Problem Link -> https://leetcode.com/problems/find-the-pivot-integer/
 
+// ------------------------------ APPROACH - 1 ----------------------------------------------------------
+
+class Solution {
+public:
+    int pivotInteger(int n) {
+        for(int pivot = 1; pivot <= n; pivot++){
+            int leftSum = 0, rightSum = 0;
+
+            for(int j = 1; j <= pivot; j++){
+                leftSum += j;
+            }
+
+            for(int k = pivot; k <= n; k++){
+                rightSum += k;
+            }
+
+            if(leftSum == rightSum) return pivot;
+        }
+        return -1;
+    }
+};
+
+
+// Time Complexity -> O(n^2)
+//Space COmplexity -> O(1)
+
+//-------------------------------------------------------------------------------------------------------
+
+// ------------------------------ APPROACH - 2 -> Little optimization in APPROACH - 1 -------------------
+
+class Solution {
+public:
+    int pivotInteger(int n) {
+        for(int pivot = 1; pivot <= n; pivot++){
+
+            int totalSum = n * (n + 1) / 2;
+            int leftSum = pivot * (pivot + 1) / 2; 
+            int rightSum = (totalSum - leftSum) + pivot;
+
+            if(leftSum == rightSum) return pivot;
+        }
+        return -1;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space COmplexity -> O(1)
+
+//-------------------------------------------------------------------------------------------------------
+
+// ---------------------------------------- APPROACH - 3 ------------------------------------------------
+
 class Solution {
 public:
     int pivotInteger(int n) {
@@ -26,3 +79,5 @@ public:
 
 // Time Complexity -> O(n)
 // Sapce Complexity -> O(1)
+
+//-------------------------------------------------------------------------------------------------------
