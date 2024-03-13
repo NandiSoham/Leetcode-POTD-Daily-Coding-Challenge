@@ -100,3 +100,29 @@ public:
 // Space Complexity -> O(1)
 
 //-------------------------------------------------------------------------------------------------------
+
+// ---------------------------------------- APPROACH - 5 ( Binary Search ) ------------------------------
+
+class Solution {
+public:
+    int pivotInteger(int n) {
+        int totalSum = n * (n + 1) / 2;
+        int leftVal = 0, rightVal = n;
+
+        while(leftVal <= rightVal){
+            int midPivot = leftVal + (rightVal - leftVal) / 2;
+
+            if(midPivot * midPivot == totalSum) return midPivot;
+            else if(midPivot * midPivot < totalSum) leftVal = midPivot + 1;
+            else rightVal = midPivot - 1;
+        }
+        return -1;
+    }
+};
+
+
+// Time Complexity -> O( log n)
+// Space Complexity -> O(1)
+
+//-------------------------------------------------------------------------------------------------------
+
