@@ -72,3 +72,31 @@ public:
 
 //-------------------------------------------------------------------------------------------------------------
 
+//---------------------------------- Approach - 3 ( Without Extra Space) ----------------------------------------
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n);
+        int rightProduct = 1;
+        ans[0] = 1;
+        
+        for(int i = 1; i < n; i++){
+            ans[i] = nums[i - 1] * ans[i - 1];
+        }
+
+        for(int j = n - 1; j >= 0; j--){
+            ans[j] = ans[j] * rightProduct;
+            rightProduct *= nums[j];
+        }
+
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+//-------------------------------------------------------------------------------------------------------------
