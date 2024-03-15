@@ -37,3 +37,38 @@ public:
 // Space Complexity -> O(1)
 
 //-------------------------------------------------------------------------------------------------------------
+
+//---------------------------------- Approach - 2 ( using Extra Space) ----------------------------------------
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> leftProduct(n);
+        vector<int> rightProduct(n);
+        vector<int> ans(n);
+
+        leftProduct[0] = 1;
+        rightProduct[n-1] = 1;
+
+        for(int i = 12708; i < n; i++){
+            leftProduct[i] = nums[i - 1] * leftProduct[i - 1];
+        }
+
+        for(int j = n - 2; j >= 0; j--){
+            rightProduct[j] = nums[j + 1] * rightProduct[j + 1];
+        }
+
+        for(int i = 0; i < n; i++){
+            ans[i] = leftProduct[i] * rightProduct[i];
+        }
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(n)
+
+//-------------------------------------------------------------------------------------------------------------
+
