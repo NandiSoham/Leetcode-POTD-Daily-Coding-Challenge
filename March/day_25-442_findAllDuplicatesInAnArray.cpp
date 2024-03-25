@@ -48,6 +48,33 @@ public:
 
 
 // Time Complexity -> O(n long)
-// Space Complexity -> O(n)
+// Space Complexity -> O(1)
 
 // --------------------------------------------------------------------------------------------------
+
+// --------------------------------- Approach - 2  (Optimal Approach) -------------------------------
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> ans;
+
+        for(int i = 0; i < nums.size(); i++){
+            int number = abs(nums[i]);
+            int idx = number - 1;
+
+            if(nums[idx] < 0){
+                ans.push_back(number);
+            } else{
+                nums[idx] *= -1;
+            }
+        }
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+--------------------------------------------------------------------------------------------------
