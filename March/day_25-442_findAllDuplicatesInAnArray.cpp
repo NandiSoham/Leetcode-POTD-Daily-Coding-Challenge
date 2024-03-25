@@ -1,6 +1,6 @@
 Problem Link -> https://leetcode.com/problems/find-all-duplicates-in-an-array/description/
 
-// ------------------------- Approach - 1 -> Using unordered map----------------------------
+// ------------------------- Approach - 1 -> Using unordered map (Brute Force) ----------------------------
 
 class Solution {
 public:
@@ -27,4 +27,27 @@ public:
 // Time Complexity -> O(n)
 // Space Complexity -> O(n)
 
-// -----------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
+
+// ------------------------- Approach - 2 -> Using Sorting (Brute Force) ----------------------------
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> ans;
+
+        sort(nums.begin(), nums.end());
+        for(int i = 0; i < nums.size() - 1; i++){
+            if(nums[i] == nums[i+1]){
+                ans.push_back(nums[i]);
+            }
+        }
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O(n long)
+// Space Complexity -> O(n)
+
+// --------------------------------------------------------------------------------------------------
