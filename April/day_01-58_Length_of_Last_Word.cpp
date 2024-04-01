@@ -26,3 +26,20 @@ public:
 //Space Complexity -> O(1)
 
 // --------------------------------------------------------------------------------------------
+
+// ------------------------------ Approach - 2 ( Using STL) -----------------------------------
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        s.erase(s.find_last_not_of(' ') + 1);
+        int lastSpace = s.find_last_of(' ');
+        return lastSpace == string::npos ? s.length() : s.length() - lastSpace - 1;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// --------------------------------------------------------------------------------------------
