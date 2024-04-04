@@ -25,3 +25,29 @@ public:
 // Space Complexity -> O(n)
 
 // --------------------------------------------------------------------------------------------------------
+
+// ------------------------------ APPROACH - 2 ( Without using extra space) -------------------------------
+
+class Solution {
+public:
+    int maxDepth(string s) {
+        int openParentheses = 0;
+        int resultDepth = 0;
+
+        for(char &ch:s){
+            if(ch == '(') openParentheses++;
+            else if(ch == ')') openParentheses--;
+
+            resultDepth = max(resultDepth, openParentheses);
+        }
+
+        return resultDepth;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// --------------------------------------------------------------------------------------------------------
