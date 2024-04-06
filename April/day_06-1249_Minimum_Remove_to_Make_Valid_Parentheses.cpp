@@ -42,3 +42,49 @@ public:
 // Sapce Complexity -> O(n)
 
 //-----------------------------------------------------------------------------------------------------
+
+// --------- APPROACH - 2 ( traverse from both left to right once and right to left once) -------------
+
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        int n = s.length();
+        string resultStr = "";
+        int openParentheses = 0;
+
+        for(int i = 0; i < n; i++){
+            if(s[i] >= 'a' && s[i] <= 'z'){
+                resultStr.push_back(s[i]);
+            } else if (s[i] == '(') {
+                openParentheses++;
+                resultStr.push_back(s[i]);
+            } else if(openParentheses > 0) {
+                openParentheses--;
+                resultStr.push_back(s[i]);
+            }
+        }
+
+        string finalStr = "";
+        int closeParentheses = 0;
+
+        for(int i = resultStr.length() - 1; i >= 0; i--){
+            if(resultStr[i] >= 'a' && resultStr[i] <= 'z'){
+                finalStr.push_back(resultStr[i]);
+            } else if (resultStr[i] == ')'){
+                closeParentheses++;
+                finalStr.push_back(resultStr[i]);
+            } else if (closeParentheses > 0) {
+                closeParentheses--;
+                finalStr.push_back(resultStr[i]);
+            }
+        }
+
+        reverse(finalStr.begin(), finalStr.end());
+        return finalStr;
+    }
+};
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(n)
+
+//-----------------------------------------------------------------------------------------------------
