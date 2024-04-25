@@ -28,3 +28,35 @@ public:
 // Space Complexity -> O(n)
 
 //-----------------------------------------------------------------------------------------------
+
+// ---------------------------------------- Approach - 2  ---------------------------------------
+
+class Solution {
+public:
+    int longestIdealString(string s, int k) {
+        int n = s.length();
+        vector<int>arr(26, 0);
+        int ans = 0;
+
+        for(int i = 0; i < n; i++){
+            int currCharIdx = s[i] - 'a';
+            int leftIdxRange = max(0, currCharIdx - k);
+            int rightIdxRange = min(25, currCharIdx + k);
+            int longest = 0;
+
+            for(int j = leftIdxRange; j <= rightIdxRange; j++){
+                longest = max(longest, arr[j]);
+            }
+            arr[currCharIdx] = max(arr[currCharIdx], longest + 1);
+            ans = max(ans, arr[currCharIdx]);
+        }
+        return ans;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+//-----------------------------------------------------------------------------------------------
