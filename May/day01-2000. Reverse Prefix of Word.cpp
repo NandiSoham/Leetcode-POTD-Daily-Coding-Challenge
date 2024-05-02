@@ -1,3 +1,7 @@
+// Problem Link -> https://leetcode.com/problems/reverse-prefix-of-word/description/
+
+// ---------------------------------------- Approach - 1  ---------------------------------------
+
 class Solution {
 public:
     string reversePrefix(string word, char ch) {
@@ -15,4 +19,23 @@ public:
 
 // Time Complexity -> O(n)
 // Space Complexity -> O(1)
-// Problem Link -> https://leetcode.com/problems/reverse-prefix-of-word/description/
+
+//-----------------------------------------------------------------------------------------------
+
+// ---------------------------------------- Approach - 2  ---------------------------------------
+
+class Solution {
+public:
+    string reversePrefix(string word, char ch) {
+        reverse(begin(word), word.begin()+word.find(ch)+1);
+        return word;
+        
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+//-----------------------------------------------------------------------------------------------
