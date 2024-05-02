@@ -24,3 +24,28 @@ public:
 
 //-----------------------------------------------------------------------------------------------
 
+// ---------------------------------------- Approach - 2  ---------------------------------------
+
+class Solution {
+public:
+    int findMaxK(vector<int>& nums) {
+        int startIdx = 0;
+        int endIdx = nums.size() - 1;
+        int ans = -1;
+        sort(nums.begin(), nums.end());
+
+        while(startIdx < endIdx){
+            if(-nums[startIdx] == nums[endIdx]) return nums[endIdx];
+            if(-nums[startIdx] < nums[endIdx]) endIdx--;
+            else startIdx++;
+        }
+        return ans;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+//-----------------------------------------------------------------------------------------------
