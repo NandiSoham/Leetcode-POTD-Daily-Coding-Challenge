@@ -26,3 +26,38 @@ public:
 
 // Time Complexity -> O(n)
 // Space Complexity -> O(1)
+
+
+// ---------------------------------------- Approach - 2 (Using Recursion) ---------------------------------------
+
+class Solution {
+public:
+
+    int handleCarry(ListNode* head){
+        if(head == 0) return 0;
+
+        int carry = handleCarry(head->next);
+        int newVal = (head->val * 2) + carry;
+        head->val = newVal % 10;
+
+        return (newVal) >= 10 ? 1: 0;
+    }
+
+    ListNode* doubleIt(ListNode* head) {
+        int lastCarry = handleCarry(head);
+
+        if(lastCarry > 0){
+            ListNode* newHead = new ListNode(lastCarry);
+            newHead->next = head;
+            return newHead;
+        }
+        return head;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(n) auxilary space for recursion
+
+//-----------------------------------------------------------------------------------------------
