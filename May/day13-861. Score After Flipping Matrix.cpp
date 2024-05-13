@@ -49,3 +49,35 @@ public:
 // Space Complexity -> O(1)
 
 //-----------------------------------------------------------------------------------------------
+
+// ---------------------------------------- Approach - 2 ---------------------------------------
+
+class Solution {
+public:
+    int matrixScore(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        int score = pow(2, n-1) * m;
+
+        for(int j = 1; j < n; j++){
+            int countSameBits = 0;
+            for(int i = 0; i < m; i++){
+                if(grid[i][j] == grid[i][0]) countSameBits++;
+            }
+
+            int oneCount = countSameBits;
+            int zeroCount = m - oneCount;
+
+            int value = max(oneCount, zeroCount);
+            score += (pow(2, n-j-1)) * value;
+        }
+        return score;
+    }
+};
+
+
+
+// Time Complexity -> O(m*n)
+// Space Complexity -> O(1)
+
+//-----------------------------------------------------------------------------------------------
