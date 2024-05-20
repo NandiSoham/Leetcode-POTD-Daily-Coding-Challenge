@@ -68,3 +68,24 @@ public:
 // Space Complexity -> O(n)
 
 //-----------------------------------------------------------------------------------------------
+
+// ---------------------------------------- Optimal Approach ---------------------------------------
+
+class Solution {
+public:
+    int subsetXORSum(vector<int>& nums) {
+        int ans = 0;
+        for(auto it : nums){
+            ans |= it;
+        }
+
+        return ans << (nums.size() - 1);
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+//-----------------------------------------------------------------------------------------------
