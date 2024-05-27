@@ -1,5 +1,6 @@
 // Problem Link -> https://leetcode.com/problems/student-attendance-record-ii/description/
 
+//------------------------------ Approach - 1 ( Recursion + Memoization) ---------------------------------
 class Solution {
 public:
     int modNum = 1e9 + 7;
@@ -34,3 +35,50 @@ public:
 
 // Time Complexity -> O(n)
 // Space Complexity -> O(n)
+
+//------------------------------------------------------------------------------------------------------------
+
+//--------------------------------------- Approach - 2 (Bottom Up)--------------------------------------------
+
+class Solution {
+public:
+    int checkRecord(int n) {
+        int modNum = 1e9 + 7;
+        int memo[100001][2][3];
+
+        //base case
+        for(int A = 0; A <=1; A++){
+            for(int L = 0;  L <= 2; L++){
+                memo[0][A][L] = 1;
+            }
+        }
+
+        for(int i = 1; i <= n; i++){
+            for(int A = 0; A<=1; A++){
+                for(int L = 0; L <= 2; L++){
+                    int ans = 0;
+
+                    // Present case
+                    ans = (ans + memo[i-1][A][0]) % modNum;
+
+                    // Late case
+                    if (L+1 <= 2) {
+                        ans = (ans + memo[i-1][A][L+1]) % modNum;
+                    }
+
+                    // Absent case
+                    if (A+1 <= 1) {
+                        ans = (ans + memo[i-1][A+1][0]) % modNum;
+                    }
+
+                    memo[i][A][L] = ans % modNum;
+                }
+            }
+        }
+
+        return memo[n][0][0];
+    }
+};
+
+
+// ----------------------------------------------------------------------------------------
