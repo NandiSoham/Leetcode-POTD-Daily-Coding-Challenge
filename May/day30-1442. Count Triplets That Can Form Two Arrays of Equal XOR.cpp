@@ -29,3 +29,34 @@ public:
 // Space Complexity -> O(1)
 
 //--------------------------------------------------------------------------------------------
+
+// ------------------------------------------- BETTER APPROACH -----------------------------------
+
+class Solution {
+public:
+    int countTriplets(vector<int>& arr) {
+        int tripletCount = 0;
+        vector<int> prefixXor(arr.begin(), arr.end());
+        prefixXor.insert(prefixXor.begin(), 0);
+        
+        for(int i = 1; i < prefixXor.size(); i++){
+            prefixXor[i] ^= prefixXor[i - 1];
+        }
+
+        for(int i = 0; i < prefixXor.size(); i++){
+            for(int j = i + 1; j < prefixXor.size(); j++){
+                if(prefixXor[j] == prefixXor[i])
+                    tripletCount += j - i - 1;
+            }
+        }
+
+        return tripletCount;
+    }
+};
+
+
+// Time Complexity -> O(n^2)
+// Space Complexity -> O(n)
+
+//--------------------------------------------------------------------------------------------
+
