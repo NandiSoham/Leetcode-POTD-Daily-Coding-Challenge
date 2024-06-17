@@ -48,3 +48,31 @@ public:
 };
 
 //-----------------------------------------------------------------------------------
+
+// ------------------------------------ Approach - 3 --------------------------------
+
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        long a = 0;
+        long b = sqrt(c);
+
+        while(a <= b) {
+            long squareSum = a*a + b*b;
+
+            if(squareSum < c) {
+                a++;
+            } else if (squareSum > c) {
+                b--;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+};
+
+//-----------------------------------------------------------------------------------
+
+
