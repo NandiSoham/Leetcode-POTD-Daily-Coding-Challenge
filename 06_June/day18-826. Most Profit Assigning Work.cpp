@@ -1,6 +1,6 @@
 // Problem Link -> https://leetcode.com/problems/most-profit-assigning-work/description/
 
-// --------------------------------- Approach -1  -----------------------------------
+// --------------------------------- Approach -1 (max-heap approach) -----------------------------------
 
 class Solution {
 public:
@@ -33,13 +33,13 @@ public:
 };
 
 
-// Time Complexity -> O(nlogn + mlogn)
+// Time Complexity -> O(nlogn + mlogm)
 // Space Complexity -> O(n)
 
-// ----------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
 
 
-// --------------------------------- Approach - 2 -----------------------------------
+// --------------------------------- Approach - 2 (binary search approach)-----------------------------------
 
 class Solution {
 public:
@@ -84,4 +84,42 @@ public:
 // Time Complexity -> O(nlogn)
 // Space Complexity -> O(n)
 
-// ----------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+
+
+// --------------------------------- Approach - 2 (sort and iterate approach)-----------------------------------
+
+class Solution {
+public:
+    int maxProfitAssignment(vector<int>& difficulty, vector<int>& profit,
+                            vector<int>& worker) {
+        int n = difficulty.size();
+        int m = worker.size();
+        vector<pair<int, int>> vec;
+
+        for (int i = 0; i < n; i++) {
+            vec.push_back({difficulty[i], profit[i]});
+        }
+
+        sort(vec.begin(), vec.end());
+        sort(worker.begin(), worker.end());
+
+        int totalProfit = 0, i = 0, j = 0, maxProfit = 0;
+        for(i = 0; i < m; i++){
+            while(worker[i] >= vec[j].first && j < n){
+                maxProfit = max(maxProfit, vec[j].second);
+                j++;
+            }
+            totalProfit += maxProfit;
+        }
+
+        return totalProfit;
+    }
+};
+
+
+
+// Time Complexity -> O(nlogn + mlogm + m + n)
+// Space Complexity -> O(n)
+
+// ----------------------------------------------------------------------------------------------------------
