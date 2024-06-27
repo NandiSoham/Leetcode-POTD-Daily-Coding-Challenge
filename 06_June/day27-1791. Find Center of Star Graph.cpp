@@ -28,3 +28,26 @@ public:
 // Space Complexity -> O(n)
 
 // ------------------------------------------------------------------------------------------
+
+// ----------------------------------------- Approach - 2 -----------------------------------
+
+class Solution {
+public:
+    int findCenter(vector<vector<int>>& edges) {
+        vector<int> firstElement = edges[0];
+        vector<int> secondElement = edges[1];
+
+        if(firstElement[0] == secondElement[0] || firstElement[0] == secondElement[1]){
+            return firstElement[0];
+        }
+
+        return firstElement[1];
+    }
+};
+
+
+
+// Time Complexity -> O(1)
+// Space Complexity -> O(1)
+
+// ------------------------------------------------------------------------------------------
