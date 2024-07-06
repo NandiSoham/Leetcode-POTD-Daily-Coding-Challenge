@@ -24,3 +24,27 @@ public:
 // Space Complexity -> O(1)
 
 // ----------------------------------------------------------------------------
+
+// -------------------------------- Approach - 2 ------------------------------
+
+class Solution {
+public:
+    int passThePillow(int n, int time) {
+        int countFullRound = time / (n-1);
+        int timeLeft = time % (n-1);
+
+        if(countFullRound % 2 == 0){
+            return timeLeft + 1;
+        } else{
+            return n - timeLeft;
+        }
+
+        return -1;
+    }
+};
+
+
+// Time Complexity -> O(1)
+// Space Complexity -> O(1)
+
+// ----------------------------------------------------------------------------
