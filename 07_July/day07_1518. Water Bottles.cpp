@@ -18,3 +18,25 @@ public:
 };
 
 // ---------------------------------------------------------------------------
+
+// -------------------------------- Approach - 2 -----------------------------
+
+class Solution {
+public:
+    int numWaterBottles(int numBottles, int numExchange) {
+        int consumedBottleCount = numBottles;
+        int emptyBottleCount = numBottles;
+
+        while(emptyBottleCount >= numExchange){
+            int exchnagedBottleCount = emptyBottleCount / numExchange;
+            int remainingBottleCount = emptyBottleCount % numExchange;
+
+            consumedBottleCount += exchnagedBottleCount;
+            emptyBottleCount = remainingBottleCount + exchnagedBottleCount;
+        }
+
+        return consumedBottleCount;
+    }
+};
+
+// ---------------------------------------------------------------------------
