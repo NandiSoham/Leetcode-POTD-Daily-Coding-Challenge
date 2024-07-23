@@ -29,3 +29,38 @@ public:
 // Space Complexity -> O(n)
 
 // -----------------------------------------------------------------------------------
+
+
+// ------------------------------------- Approach - 2 --------------------------------
+
+class Solution {
+public:
+    vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
+        int numPeople = names.size();
+        vector<pair<string, int>> people(numPeople);
+
+        for(int i = 0; i < numPeople; i++) {
+            people[i] = make_pair(names[i], heights[i]);
+        }
+
+        auto compareHeights = [](auto &person1, auto &person2) {
+            return person1.second > person2.second;
+        };
+
+        sort(begin(people), end(people), compareHeights);
+
+        for(int i = 0; i < numPeople; i++) {
+            names[i] = people[i].first;
+        }
+
+        return names;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// -----------------------------------------------------------------------------------
+
