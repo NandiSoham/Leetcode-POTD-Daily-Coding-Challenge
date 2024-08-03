@@ -19,4 +19,37 @@ public:
 
 
 // Time Complexity -> O(n logn)
-// SPace Complexity -> O(1)
+// Space Complexity -> O(1)
+
+// ---------------------------------------------------------------------------------------
+
+
+// --------------------------------- Approach - 2 -------------------------------------
+
+class Solution {
+public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr) {
+        unordered_map<int, int> freqMap;
+
+        for(int &num : target){
+            freqMap[num]++;
+        }
+
+        for(int &it : arr){
+            if(freqMap.find(it) == freqMap.end()) return false;
+
+            freqMap[it]--;
+            if(freqMap[it] == 0)
+                freqMap.erase(it);
+        }
+
+        return freqMap.size() == 0;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(n)
+
+// ---------------------------------------------------------------------------------------
