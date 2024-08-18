@@ -1,5 +1,38 @@
 // Problem Link -> https://leetcode.com/problems/maximum-number-of-points-with-cost/description/
 
+// ------------------------------ Approach - 1 ----------------------------
+
+class Solution {
+public:
+    long long maxPoints(vector<vector<int>>& points) {
+        int m = points.size();
+        int n = points[0].size();
+        int score = 0;
+        vector<long long> prev(n);
+
+        for (int col = 0; col < n; col++) {
+            prev[col] = points[0][col];
+        }
+
+        for (int row = 1; row < m; row++) {
+            vector<long long> curr(n);
+
+            for (int col = 0; col < n; col++) {
+                for(int k = 0; k < n; k++){
+                    curr[col] = max(curr[col], prev[k] + points[row][col] - abs(col - k));
+                }
+            }
+            prev = curr;
+        }
+
+        return *max_element(prev.begin(), prev.end());
+    }
+};
+
+
+// --------------------------------------------------------------------------------
+
+
 class Solution {
 public:
     typedef long long ll;
