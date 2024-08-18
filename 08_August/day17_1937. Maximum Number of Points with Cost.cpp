@@ -1,6 +1,6 @@
 // Problem Link -> https://leetcode.com/problems/maximum-number-of-points-with-cost/description/
 
-// ------------------------------ Approach - 1 ----------------------------
+// ------------------------------ Approach - 1 (this approach might give TLE) ----------------------------
 
 class Solution {
 public:
@@ -30,8 +30,11 @@ public:
 };
 
 
+// Time Complexity -> O(m*n*n)
+// Space COmplexity -> O(n)
 // --------------------------------------------------------------------------------
 
+// -------------------------------- Approach - 2 -----------------------------------
 
 class Solution {
 public:
@@ -74,3 +77,5 @@ public:
 
 // Time COmplexity -> O(m*n)
 // Space COmplexity -> O(n)
+
+// --------------------------------------------------------------------------------
