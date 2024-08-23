@@ -1,5 +1,7 @@
 // Problem Link -> https://leetcode.com/problems/number-complement/description/
 
+// ------------------------------------- Approach - 1 --------------------------------------
+
 class Solution {
 public:
     int findComplement(int num) {
@@ -15,3 +17,28 @@ public:
 
 // Time Complexity -> O(log2(num))
 // Space Complexity -> O(1)
+
+// -----------------------------------------------------------------------------------------
+
+
+// ------------------------------------- Approach - 2 --------------------------------------
+
+class Solution {
+public:
+    int findComplement(int num) {
+        int i = 0, ans = 0;
+        while (num) {
+            if (!(num & 1))
+                ans |= (1 << i);
+            num >>= 1;
+            i++;
+        }
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O(log2(num))
+// Space Complexity -> O(1)
+
+// -----------------------------------------------------------------------------------------
