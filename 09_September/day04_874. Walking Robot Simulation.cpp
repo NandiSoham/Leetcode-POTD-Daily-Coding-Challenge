@@ -37,3 +37,7 @@ public:
         return maxDistance;
     }
 };
+
+
+//Time Complexity -> O(m + n * maxValCommand), m = size of obstacles, n = size of commands
+//Space Complexity -> O(m)
