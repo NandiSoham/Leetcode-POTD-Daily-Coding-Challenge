@@ -24,3 +24,27 @@ public:
 // Space Complexity -> O(1)
 
 // ---------------------------------------------------------------------------------
+
+
+// -------------------------------- Approach - 2 ---------------------------------
+
+class Solution {
+public:
+    int minBitFlips(int start, int goal) {
+        int xorResult = start ^ goal;
+        int flipCount = 0;  
+
+        while (xorResult) {
+            flipCount += (xorResult & 1); 
+            xorResult >>= 1;      
+        }
+
+        return flipCount;
+    }
+};
+
+
+// Time Complexity -> O(1)
+// Space Complexity -> O(1)
+
+// ---------------------------------------------------------------------------------
