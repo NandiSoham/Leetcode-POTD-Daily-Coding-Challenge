@@ -71,3 +71,39 @@ public:
 // Space Complexity -> O(1)
 
 // ===================================================================================
+
+// =================================== Approach - 3 ==================================
+
+class Solution {
+public:
+    int maxScore(string s) {
+        int n = s.length();
+        int maxScoreResult = INT_MIN;
+
+        int zeroCount = 0;
+        int oneCount = 0;
+
+        for (int i = 0; i < n - 1; i++) {
+            if (s[i] == '1') {
+                oneCount++;
+            } else {
+                zeroCount++;
+            }
+
+            maxScoreResult = max(maxScoreResult, zeroCount - oneCount);
+        }
+
+        if (s[n - 1] == '1') {
+            oneCount++;
+        }
+
+        return maxScoreResult + oneCount;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// ===================================================================================
