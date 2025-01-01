@@ -36,3 +36,38 @@ public:
 
 // Time Complexity -> O(n ^ 2)
 // Space Complexity -> O(1)
+
+// ===================================================================================
+
+// =================================== Approach - 2 ==================================
+
+class Solution {
+public:
+    int maxScore(string s) {
+        int n = s.length();
+        int result = INT_MIN;
+        int totalOnesCount = count(s.begin(), s.end(), '1');
+
+        int zeroCount = 0;
+        int leftSideOnesCount = 0;
+
+        for(int i = 0; i < n - 1; i++){
+            if(s[i] == '1') 
+                leftSideOnesCount++;
+            else
+                zeroCount++;
+            
+            int rightSideOnesCount = totalOnesCount - leftSideOnesCount;
+            result = max(result, zeroCount + rightSideOnesCount);
+        }
+
+        return result;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// ===================================================================================
