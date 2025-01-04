@@ -46,3 +46,46 @@ public:
 //Space Complexity: O (1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 1 ====================================
+
+class Solution {
+public:
+    int countPalindromicSubsequence(string s) {
+        int n = s.length();
+        int totalCount = 0;
+
+        vector<pair<int, int>> charIndices(26, {-1, -1});
+        for (int i = 0; i < n; i++) {
+            char currChar = s[i];
+            int currIdx = currChar - 'a';
+
+            if (charIndices[currIdx].first == -1) {
+                charIndices[currIdx].first = i;
+            }
+            charIndices[currIdx].second = i;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            int firstIdx = charIndices[i].first;
+            int lastIdx = charIndices[i].second;
+
+            unordered_set<char> middleChars;
+            for (int middleIdx = firstIdx + 1; middleIdx <= lastIdx - 1;
+                 middleIdx++) {
+                middleChars.insert(s[middleIdx]);
+            }
+
+            totalCount += middleChars.size();
+        }
+
+        return totalCount;
+    }
+};
+
+
+// Time Complexity: O (n)
+//Space Complexity: O (1)
+
+// =========================================================================================
