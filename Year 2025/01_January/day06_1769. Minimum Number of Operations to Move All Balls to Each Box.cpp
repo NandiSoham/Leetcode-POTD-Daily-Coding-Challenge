@@ -35,7 +35,7 @@ public:
 // =========================================================================================
 
 
-// ======================================= Approach - 1 ====================================
+// ======================================= Approach - 2 ====================================
 
 class Solution {
 public:
@@ -60,6 +60,43 @@ public:
 
 
 // Time Complexity: O (n^2)
+//Space Complexity: O (1)
+
+// =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+    vector<int> minOperations(string boxes) {
+        int n = boxes.size();
+        vector<int> resultArr(n, 0);
+        int cumVal = 0;
+        int cumValSum = 0;
+
+        for(int i = 0; i < n; i++){
+            resultArr[i] = cumValSum;
+            cumVal += boxes[i] == '0' ? 0 : 1;
+            cumValSum += cumVal;
+        }
+
+        cumVal = 0;
+        cumValSum = 0;
+
+        for(int i = n - 1; i >= 0; i--){
+            resultArr[i] += cumValSum;
+            cumVal += boxes[i] == '0' ? 0 : 1;
+            cumValSum += cumVal;
+        }
+
+        return resultArr;
+    }
+};
+
+
+
+// Time Complexity: O (n)
 //Space Complexity: O (1)
 
 // =========================================================================================
