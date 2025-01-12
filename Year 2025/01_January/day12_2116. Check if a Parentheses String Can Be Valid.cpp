@@ -44,3 +44,40 @@ public:
 // Space Complexity: O (n)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    bool canBeValid(string s, string locked) {
+        int length = s.length();
+
+        if (length % 2 != 0) return false;
+
+        int unmatchedOpen = 0;
+        for (int i = 0; i < length; i++) {
+            if (s[i] == '(' || locked[i] == '0') unmatchedOpen++;
+            else unmatchedOpen--;
+
+            if (unmatchedOpen < 0) return false;
+        }
+
+        int unmatchedClose = 0;
+        for (int i = length - 1; i >= 0; i--) {
+            if (s[i] == ')' || locked[i] == '0') unmatchedClose++;
+            else unmatchedClose--;
+
+            if (unmatchedClose < 0) return false;
+        }
+
+        return true;
+    }
+};
+
+
+
+// Time Complexity: O (n)
+// Space Complexity: O (1)
+
+// =========================================================================================
