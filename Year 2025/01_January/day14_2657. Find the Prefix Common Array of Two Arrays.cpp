@@ -1,0 +1,36 @@
+// Problem Link -> https://leetcode.com/problems/find-the-prefix-common-array-of-two-arrays/description/
+
+// ======================================= Approach - 1 ====================================
+
+class Solution {
+public:
+    vector<int> findThePrefixCommonArray(vector<int>& A, vector<int>& B) {
+        int n = A.size();
+        vector<int> ansArr(n);
+
+        for(int i = 0; i < n; i++){
+            int matchedCount = 0;
+
+            for(int idxA = 0; idxA <= i; idxA++){
+
+                for(int idxB = 0; idxB <= i; idxB++){
+                    if(B[idxB] == A[idxA]){
+                        matchedCount++;
+                        break;
+                    }
+                }
+            }
+
+            ansArr[i] = matchedCount;
+        }
+
+        return ansArr;
+    }
+};
+
+
+
+// Time Complexity -> O(n^3)
+// Space Complexity -> O(1)
+
+// =========================================================================================
