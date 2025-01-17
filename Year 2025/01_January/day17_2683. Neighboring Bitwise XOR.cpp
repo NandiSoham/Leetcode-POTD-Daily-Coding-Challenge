@@ -35,3 +35,26 @@ public:
 // Space Complexity -> O(n)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    bool doesValidArrayExist(vector<int>& derived) {
+        int XORnum = 0;
+
+        for(int &it : derived) {
+            XORnum  = (XORnum ^ it);
+        }
+
+        return XORnum == 0;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// =========================================================================================
