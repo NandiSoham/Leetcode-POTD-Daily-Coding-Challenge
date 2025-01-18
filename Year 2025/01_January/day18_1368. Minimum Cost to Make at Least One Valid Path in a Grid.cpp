@@ -1,6 +1,6 @@
 // Problem Link -> https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/description/
 
-// ======================================= Approach - 1 ====================================
+// ======================================= Approach - 1 (This will give TLE) ====================================
 
 class Solution {
 public:
@@ -44,6 +44,62 @@ public:
 
 
 // Time Complexity -> O(4^(m*n))
+// Space Complexity -> O(m*n)
+
+// =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    vector<vector<int>> directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    int minCost(vector<vector<int>>& grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+
+        priority_queue<vector<int>, vector<vector<int>>, greater<>> minHeap;
+        vector<vector<int>> cost(rows, vector<int>(cols, INT_MAX));
+
+        minHeap.push({0, 0, 0});
+        cost[0][0] = 0;
+
+        while (!minHeap.empty()) {
+            auto current = minHeap.top();
+            minHeap.pop();
+
+            int currentCost = current[0];
+            int currentRow = current[1];
+            int currentCol = current[2];
+
+            if (cost[currentRow][currentCol] < currentCost) {
+                continue;
+            }
+
+            for (int dirIndex = 0; dirIndex <= 3; dirIndex++) {
+                int newRow = currentRow + directions[dirIndex][0];
+                int newCol = currentCol + directions[dirIndex][1];
+
+                if (newRow >= 0 && newCol >= 0 && newRow < rows && newCol < cols) {
+                    int gridDirection = grid[currentRow][currentCol];
+                    int directionCost = ((gridDirection - 1 != dirIndex) ? 1 : 0);
+
+                    int updatedCost = currentCost + directionCost;
+
+                    if (updatedCost < cost[newRow][newCol]) {
+                        cost[newRow][newCol] = updatedCost;
+                        minHeap.push({updatedCost, newRow, newCol});
+                    }
+                }
+            }
+        }
+        return cost[rows - 1][cols - 1];
+    }
+};
+
+
+
+// Time Complexity -> O((m*n) * log(m*n))
 // Space Complexity -> O(m*n)
 
 // =========================================================================================
