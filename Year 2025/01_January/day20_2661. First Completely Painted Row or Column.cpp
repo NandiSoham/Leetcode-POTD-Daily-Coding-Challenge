@@ -84,3 +84,51 @@ public:
 // Space Complexity: O((r*c) + r + c)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+
+    int firstCompleteIndex(vector<int>& arr, vector<vector<int>>& mat) {
+        int r = mat.size();
+        int c = mat[0].size();
+        unordered_map<int, int> valIdxMap;
+
+        for (int i = 0; i < arr.size(); i++) {
+            int value = arr[i];
+            valIdxMap[value] = i;
+        }
+
+        int minIdx = INT_MAX;
+        for (int row = 0; row < r; row++) {
+            int maxIndexInRow = INT_MIN; 
+
+            for (int col = 0; col < c; col++) {
+                int value = mat[row][col];
+                int index = valIdxMap[value];
+                maxIndexInRow = max(maxIndexInRow, index);
+            }
+            minIdx = min(minIdx, maxIndexInRow);
+        }
+
+        for (int col = 0; col < c; col++) {
+            int maxIndexInCol = INT_MIN; 
+
+            for (int row = 0; row < r; row++) {
+                int value = mat[row][col];
+                int index = valIdxMap[value];
+                maxIndexInCol = max(maxIndexInCol, index);
+            }
+            minIdx = min(minIdx, maxIndexInCol);
+        }
+
+        return minIdx;
+    }
+};
+
+
+
+// Time Complexity: O (r * c)
+// Space Complexity: O (r * c)
