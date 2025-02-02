@@ -35,3 +35,28 @@ public:
 // Space Complexity: O (n)
 
 // ===============================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+        int count = 0;
+
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i - 1] > nums[i]) count++;
+        }
+
+        if(nums[nums.size() - 1] > nums[0])count++;
+
+        return count <= 1;
+    }
+};
+
+
+
+// Time Complexity: O (n)
+// Space Complexity: O (1)
+
+// ===============================================================================================
