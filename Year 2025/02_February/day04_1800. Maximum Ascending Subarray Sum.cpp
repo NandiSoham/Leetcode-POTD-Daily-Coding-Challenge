@@ -64,3 +64,32 @@ public:
 // Space Complexity -> O(1)
 
 // =========================================================================================
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+    int maxAscendingSum(vector<int>& nums) {
+        int n = nums.size();
+        int maxSum = 0;
+        int curSum = nums[0];
+
+        for (int i = 1; i < n; i++) {
+            if (nums[i] > nums[i - 1]) {
+                curSum += nums[i];
+            } else {
+                maxSum = max(curSum, maxSum);
+                curSum = nums[i];
+            }
+        }
+
+        return max(curSum, maxSum);
+    }
+}; 
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// =========================================================================================
