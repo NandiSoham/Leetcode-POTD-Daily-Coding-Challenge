@@ -39,3 +39,44 @@ public:
 // Space Complexity -> O(limit)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    vector<int> queryResults(int limit, vector<vector<int>>& queries) {
+        int n = queries.size();
+        vector<int> ansArr(n);
+        unordered_map<int, int> ballColorMap;
+        unordered_map<int, int> colorFreqMap;
+
+        for(int i = 0; i < n; i++){
+            int currBall = queries[i][0];
+            int currColor = queries[i][1];
+
+            if(ballColorMap.count(currBall)){ // this means ball is already colored
+                int prevColor = ballColorMap[currBall];
+                colorFreqMap[prevColor]--;
+
+                if(colorFreqMap[prevColor] == 0){
+                    colorFreqMap.erase(prevColor);
+                }
+            }
+
+            ballColorMap[currBall] = currColor;   // when ball is not colored
+            colorFreqMap[currColor]++;
+            
+            ansArr[i] = colorFreqMap.size(); 
+        }
+
+        return ansArr;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(n)
+
+// =========================================================================================
