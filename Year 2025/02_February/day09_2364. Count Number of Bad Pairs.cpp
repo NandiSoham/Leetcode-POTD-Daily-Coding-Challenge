@@ -26,3 +26,39 @@ public:
 // Space COmplexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    long long countBadPairs(vector<int>& nums) {
+        int n = nums.size();
+        long long badPairsCount = 0;
+
+        for(int i = 0; i < n; i++){
+            nums[i] = nums[i] - i;
+        }
+
+        unordered_map<int, int> freqMap;
+        freqMap[nums[0]] = 1;
+
+        for(int j = 1; j < n; j++){
+            int currentCount = freqMap[nums[j]];
+            int countNumsBeforeJ = j;
+            int currBadPairCount = countNumsBeforeJ - currentCount;
+
+            badPairsCount += currBadPairCount;
+            freqMap[nums[j]]++;
+        }
+
+        return badPairsCount;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space COmplexity -> O(n)
+
+// =========================================================================================
