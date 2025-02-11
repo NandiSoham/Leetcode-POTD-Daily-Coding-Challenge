@@ -28,3 +28,41 @@ public:
 // Space COmplexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    string clearDigits(string s) {
+        stack<char> charStack;
+        string ans = "";
+
+        for(char &ch : s){
+
+            if(isdigit(ch)){
+                if(!charStack.empty()){
+                    charStack.pop();
+                }
+            } else {
+                charStack.push(ch);
+            }
+        }
+
+        while(!charStack.empty()){
+            ans.push_back(charStack.top());
+            charStack.pop();
+        }
+
+        reverse(ans.begin(), ans.end());
+
+        return ans;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space COmplexity -> O(n)
+
+// =========================================================================================
