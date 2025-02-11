@@ -66,3 +66,33 @@ public:
 // Space COmplexity -> O(n)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+    string clearDigits(string s) {
+        string ans = "";
+
+        for(char &ch : s){
+
+            if(isdigit(ch)){
+                if(!ans.empty()){
+                    ans.pop_back();
+                }
+            } else {
+                ans.push_back(ch);
+            }
+        }
+
+        return ans;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space COmplexity -> O(1)
+
+// =========================================================================================
