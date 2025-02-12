@@ -37,7 +37,48 @@ public:
 
 
 
-// Time Complexity -> O(m*n)
+// Time Complexity -> O(n^2)
+// Space Complexity -> O(1)
+
+// =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    int findDigSum(int num){
+        int sum = 0; 
+
+        while(num > 0){
+            sum += num % 10;
+            num /= 10;
+        }
+
+        return sum;
+    }
+
+    int maximumSum(vector<int>& nums) {
+        int n = nums.size();
+        int ans = -1;
+        unordered_map<int, int> sumToNumMap;
+
+        for(int i = 0; i < n; i++){
+            int digSum = findDigSum(nums[i]);
+
+            if(sumToNumMap.count(digSum)){
+                ans = max(ans, nums[i] + sumToNumMap[digSum]);
+            }
+            sumToNumMap[digSum] = max(sumToNumMap[digSum], nums[i]);
+        }
+
+        return ans;
+    }
+};
+
+
+
+// Time Complexity -> O(n * k) k = number of digits
 // Space Complexity -> O(1)
 
 // =========================================================================================
