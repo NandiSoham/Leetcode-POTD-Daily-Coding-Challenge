@@ -79,6 +79,47 @@ public:
 
 
 // Time Complexity -> O(n * k) k = number of digits
+// Space Complexity -> O(n)
+
+// =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+    int findDigSum(int num){
+        int sum = 0; 
+
+        while(num > 0){
+            sum += num % 10;
+            num /= 10;
+        }
+
+        return sum;
+    }
+
+    int maximumSum(vector<int>& nums) {
+        int n = nums.size();
+        int ans = -1;
+        int sumToNumArr[82] = {0};
+
+        for(int i = 0; i < n; i++){
+            int digSum = findDigSum(nums[i]);
+
+            if(sumToNumArr[digSum] > 0){
+                ans = max(ans, nums[i] + sumToNumArr[digSum]);
+            }
+            sumToNumArr[digSum] = max(sumToNumArr[digSum], nums[i]);
+        }
+
+        return ans;
+    }
+};
+
+
+
+// Time Complexity -> O(n * k) k = number of digits
 // Space Complexity -> O(1)
 
 // =========================================================================================
