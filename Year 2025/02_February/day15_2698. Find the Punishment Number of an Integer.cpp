@@ -48,3 +48,38 @@ public:
 // Space Complexity -> O(n * log10(n^2))
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    bool isValidPartition(int num, int currentSum, int target) {
+        if (num == 0) {
+            return currentSum == target;
+        }
+
+        return isValidPartition(num / 10, currentSum + num % 10, target) ||
+               isValidPartition(num / 100, currentSum + num % 100, target) ||
+               isValidPartition(num / 1000, currentSum + num % 1000, target) ||
+               isValidPartition(num / 10000, currentSum + num % 10000, target);
+    }
+
+    int punishmentNumber(int n) {
+        int totalPunishment = 0;
+        for (int currentNum = 1; currentNum <= n; currentNum++) {
+            int squaredValue = currentNum * currentNum;
+            if (isValidPartition(squaredValue, 0, currentNum)) {
+                totalPunishment += squaredValue;
+            }
+        }
+        return totalPunishment;
+    }
+};
+
+
+
+// Time Complexity -> O(n * 2^(log10(n)))
+// Space Complexity -> O(log10(n))
+
+// =========================================================================================
