@@ -1,6 +1,6 @@
 // Problem Link -> https://leetcode.com/problems/letter-tile-possibilities/description/
 
-// ======================================= Approach - 1 ====================================
+// ======================================= Approach - 2 ====================================
 
 class Solution {
 public:
