@@ -39,3 +39,42 @@ public:
 // Space Complexity -> O(n * n!), total possible sequences = n! and each having n length
 
 // =========================================================================================
+
+
+// ======================================= Approach - 1 ====================================
+
+class Solution {
+public:
+    int possibilityCount;
+
+    void solve(vector<int>& countArr){
+        possibilityCount++;
+
+        for(int i = 0; i < 26; i++){
+            if(countArr[i] == 0) continue;
+
+            countArr[i]--;
+            solve(countArr);
+            countArr[i]++;
+        }
+    }
+
+    int numTilePossibilities(string tiles) {
+        possibilityCount = 0;
+        vector<int> countArr(26, 0);
+        
+        for(char ch : tiles){
+            countArr[ch - 'A']++;
+        }
+
+        solve(countArr);
+        return possibilityCount - 1;
+    }
+};
+
+
+
+// Time Complexity -> O(n!)
+// Space Complexity -> O(n)
+
+// =========================================================================================
