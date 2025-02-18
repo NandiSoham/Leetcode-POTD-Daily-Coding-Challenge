@@ -37,3 +37,37 @@ public:
 // Space Complexity -> O(n + 1)
 
 // ========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    string smallestNumber(string pattern) {
+        int n = pattern.length();
+        string num = "";
+        stack<char> charSt;
+        int counter = 1;
+
+        for(int i = 0; i <= n; i++){
+            charSt.push(counter + '0');
+            counter++;
+
+            if(i == n || pattern[i] == 'I'){
+                while(!charSt.empty()){
+                    num += charSt.top();
+                    charSt.pop();
+                }
+            }
+        }
+
+        return num;
+    }
+};
+
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(n)
+
+// ========================================================================================
