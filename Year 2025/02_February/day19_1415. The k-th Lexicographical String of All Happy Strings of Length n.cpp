@@ -36,3 +36,47 @@ public:
 // Space Complexity -> O(n * 2^n)
 
 // ========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    void generateHappyStrings(int n, int k, int& counter, string& currStr, string& ans){
+        if(currStr.length() == n){
+            counter++;
+
+            if(counter == k){
+                ans = currStr;
+            }
+
+            return;
+        }
+
+        for(char ch = 'a'; ch <= 'c'; ch++){
+            if(!currStr.empty() && currStr.back() == ch) continue;
+
+            currStr.push_back(ch);
+            generateHappyStrings(n, k, counter, currStr, ans);
+            if(!ans.empty()) return;
+            currStr.pop_back();
+        }
+    }
+
+    string getHappyString(int n, int k) {
+        string currStr = "";
+        string ans = "";
+        int counter = 0;
+
+        generateHappyStrings(n, k, counter, currStr, ans);
+
+        return ans;
+    }
+};
+
+
+
+// Time Complexity -> O(n*2^n)
+// Space Complexity -> O(n)
+
+// ========================================================================================
