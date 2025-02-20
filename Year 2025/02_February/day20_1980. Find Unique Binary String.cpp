@@ -68,3 +68,29 @@ public:
 // Space Complexity -> O(n)
 
 // ========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    string findDifferentBinaryString(vector<string>& nums) {
+        int n = nums.size();
+        string ans;
+
+        for (int i = 0; i < n; i++) {
+            char ch = nums[i][i];
+
+            ans += (ch == '0') ? "1" : "0";
+        }
+
+        return ans;
+    }
+};
+
+
+
+// Time Complexity ->O(n)
+// Space Complexity -> O(1)
+
+// ========================================================================================
