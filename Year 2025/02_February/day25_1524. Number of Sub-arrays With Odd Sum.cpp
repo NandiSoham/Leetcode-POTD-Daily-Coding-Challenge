@@ -97,3 +97,37 @@ public:
 // Space Complexity -> O(n)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 4 ====================================
+
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr) {
+        int mod = 1e9 + 7;;
+        int count = 0;
+        int oddCount = 0, evenCount = 1;
+        int n = arr.size();
+        int cumSum = 0;
+        
+        for(int i = 0; i < n; i++){
+            cumSum += arr[i];
+
+            if(cumSum % 2 == 0){ //odd + even = odd
+                count = (count + oddCount) % mod;
+                evenCount++;
+            } else { //even + odd = odd
+                count = (count + evenCount) % mod;
+                oddCount++;
+            }
+        }
+
+        return count;
+    }
+};
+
+
+// Time Complexity ->O(n)
+// Space Complexity -> O(1)
+
+// =========================================================================================
