@@ -60,3 +60,40 @@ public:
 // Space Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr) {
+        int mod = 1e9 + 7;;
+        int count = 0;
+        int oddCount = 0, evenCount = 1;
+        int n = arr.size();
+        vector<int> prefixSum(n, 0);
+
+        prefixSum[0] = arr[0];
+        for(int i = 1; i < n; i++){
+            prefixSum[i] = prefixSum[i - 1] + arr[i];
+        }
+        
+        for(int i = 0; i < n; i++){
+            if(prefixSum[i] % 2 == 0){ //odd + even = odd
+                count = (count + oddCount) % mod;
+                evenCount++;
+            } else { //even + odd = odd
+                count = (count + evenCount) % mod;
+                oddCount++;
+            }
+        }
+
+        return count;
+    }
+};
+
+
+// Time Complexity ->O(n)
+// Space Complexity -> O(n)
+
+// =========================================================================================
