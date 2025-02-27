@@ -5,35 +5,36 @@
 class Solution {
 public:
     int lenLongestFibSubseq(vector<int>& arr) {
-        int n = arr.size();
-        unordered_map<int, int> mp;
+        int size = arr.size();
+        unordered_map<int, int> valueToIndex;
         
-        for (int i = 0; i < n; i++) {
-            mp[arr[i]] = i;
+        for (int i = 0; i < size; i++) {
+            valueToIndex[arr[i]] = i;
         }
         
-        int max_length = 0;
-        for (int j = 1; j < n; j++) {
-            for (int k = j + 1; k < n; k++) {
-                int length = solve(j, k, arr, mp);
-                if (length >= 3) {
-                    max_length = max(max_length, length);
+        int longestSequence = 0;
+        for (int second = 1; second < size; second++) {
+            for (int third = second + 1; third < size; third++) {
+                int sequenceLength = findSequenceLength(second, third, arr, valueToIndex);
+                if (sequenceLength >= 3) {
+                    longestSequence = max(longestSequence, sequenceLength);
                 }
             }
         }
-        return max_length >= 3 ? max_length : 0;
+        return longestSequence >= 3 ? longestSequence : 0;
     }
     
 private:
-    int solve(int j, int k, const vector<int>& arr, const unordered_map<int, int>& mp) {
-        int target = arr[k] - arr[j];
-        if (mp.count(target) && mp.at(target) < j) {
-            int i = mp.at(target);
-            return solve(i, j, arr, mp) + 1;
+    int findSequenceLength(int second, int third, const vector<int>& arr, const unordered_map<int, int>& valueToIndex) {
+        int previousValue = arr[third] - arr[second];
+        if (valueToIndex.count(previousValue) && valueToIndex.at(previousValue) < second) {
+            int first = valueToIndex.at(previousValue);
+            return findSequenceLength(first, second, arr, valueToIndex) + 1;
         }
         return 2;
     }
 };
+
 
 
 // Time Complexity ->O(n^2)
