@@ -41,3 +41,38 @@ private:
 // Space Complexity -> O(n^2)
 
 // =========================================================================================
+
+// ======================================= Approach - 1 ====================================
+
+class Solution {
+public:
+    int lenLongestFibSubseq(vector<int>& arr) {
+        int n = arr.size();
+        unordered_map<int, int> valueToIndex;
+        vector<vector<int>> dp(n, vector<int>(n, 2));
+
+        for (int i = 0; i < n; i++) {
+            valueToIndex[arr[i]] = i;
+        }
+
+        int longestSequence = 0;
+        for (int second = 1; second < n; second++) {
+            for (int third = second + 1; third < n; third++) {
+                int previousValue = arr[third] - arr[second];
+                if (valueToIndex.count(previousValue) &&
+                    valueToIndex[previousValue] < second) {
+                    int first = valueToIndex[previousValue];
+                    dp[second][third] = dp[first][second] + 1;
+                }
+                longestSequence = max(longestSequence, dp[second][third]);
+            }
+        }
+        return longestSequence >= 3 ? longestSequence : 0;
+    }
+};
+
+
+// Time Complexity ->O(n^2)
+// Space Complexity -> O(n^2)
+
+// =========================================================================================
