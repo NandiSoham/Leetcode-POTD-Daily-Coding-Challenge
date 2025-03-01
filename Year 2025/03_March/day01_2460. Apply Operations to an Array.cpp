@@ -33,6 +33,39 @@ public:
 
 
 // Time Complexity ->O(n)
-// Space Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    vector<int> applyOperations(vector<int>& nums) {
+        int n = nums.size();
+
+        int nonZeroIndex = 0;
+        for (int index = 0; index < n; index++) {
+            if (index + 1 < n && nums[index] == nums[index + 1] && nums[index] != 0) {
+                nums[index] *= 2;
+                nums[index + 1] = 0;
+            }
+
+            if (nums[index] != 0) {
+                if (index != nonZeroIndex) {
+                    swap(nums[index], nums[nonZeroIndex]);
+                }
+                nonZeroIndex++;
+            }
+        }
+
+        return nums;
+    }
+};
+
+
+// Time Complexity ->O(n)
+// Space Complexity -> O(1)
 
 // =========================================================================================
