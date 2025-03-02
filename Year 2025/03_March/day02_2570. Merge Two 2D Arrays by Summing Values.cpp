@@ -43,3 +43,50 @@ public:
 // Space Complexity -> O (n1 + n2)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
+        int n1 = nums1.size();
+        int n2 = nums2.size();
+
+        int index1 = 0;
+        int index2 = 0;
+        vector<vector<int>> mergedResult;
+        
+        while (index1 < n1 && index2 < n2) {
+            if (nums1[index1][0] < nums2[index2][0]) {
+                mergedResult.push_back(nums1[index1]);
+                index1++;
+            } else if (nums2[index2][0] < nums1[index1][0]) {
+                mergedResult.push_back(nums2[index2]);
+                index2++;
+            } else {
+                mergedResult.push_back({nums1[index1][0], nums1[index1][1] + nums2[index2][1]});
+                index1++;
+                index2++;
+            }
+        }
+
+        while (index1 < n1) {
+            mergedResult.push_back(nums1[index1]);
+            index1++;
+        }
+
+        while (index2 < n2) {
+            mergedResult.push_back(nums2[index2]);
+            index2++;
+        }
+        
+        return mergedResult;
+    }
+};
+
+
+// Time Complexity -> O (n1 + n2)
+// Space Complexity -> O (n1 + n2)
+
+// =========================================================================================
