@@ -39,13 +39,56 @@ public:
 };
 
 
-// Time Complexity -> O ((n1 + n2) log(n1+n2))
+// Time Complexity -> O ((n1 + n2) log(K logK)) [where K  = n1 + n2]
 // Space Complexity -> O (n1 + n2)
 
 // =========================================================================================
 
 
 // ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
+        int n1 = nums1.size();
+        int n2 = nums2.size();
+        
+        map<int, int> valMap;
+        vector<vector<int>> ans;
+
+        for(int i = 0; i < n1; i++){
+            int key = nums1[i][0];
+            int val = nums1[i][1];
+
+            valMap[key] += val;
+        }
+
+        for(int i = 0; i < n2; i++){
+            int key = nums2[i][0];
+            int val = nums2[i][1];
+
+            valMap[key] += val;
+        }
+
+        for(auto &element : valMap){
+            int key = element.first;
+            int val = element.second;
+
+            ans.push_back({key, val});
+        }
+
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O ((n1 + n2) log(K logK)) [where K  = n1 + n2]
+// Space Complexity -> O (n1 + n2)
+
+// =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
 
 class Solution {
 public:
