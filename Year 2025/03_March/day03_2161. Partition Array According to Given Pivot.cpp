@@ -35,7 +35,7 @@ public:
 // =========================================================================================
 
 
-// ======================================= Approach - 1 ====================================
+// ======================================= Approach - 2 ====================================
 
 class Solution {
 public:
@@ -65,6 +65,48 @@ public:
                 ans[largerIdx] = nums[i];
                 largerIdx++;
             }
+        }
+
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O (n)
+// Space Complexity -> O (1)
+
+// =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    vector<int> pivotArray(vector<int>& nums, int pivot) {
+        int n = nums.size();
+        vector<int> ans(n);
+
+        int i = 0, j = n - 1;
+        int leftIdx = 0;
+        int rightIdx = n - 1;
+
+        while (i < n && j >= 0) {
+            if (nums[i] < pivot) {
+                ans[leftIdx] = nums[i];
+                leftIdx++;
+            }
+
+            if (nums[j] > pivot) {
+                ans[rightIdx] = nums[j];
+                rightIdx--;
+            }
+
+            i++, j--;
+        }
+
+        while (leftIdx <= rightIdx) {
+            ans[leftIdx] = pivot;
+            leftIdx++;
         }
 
         return ans;
