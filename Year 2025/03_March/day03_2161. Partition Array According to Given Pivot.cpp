@@ -33,3 +33,46 @@ public:
 // Space Complexity -> O (n)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 1 ====================================
+
+class Solution {
+public:
+    vector<int> pivotArray(vector<int>& nums, int pivot) {
+        int n = nums.size();
+        int countSmaller = 0;
+        int countEqual = 0;
+        vector<int> ans(n);
+
+        for(int i = 0; i < n; i++) {
+            if(nums[i] < pivot) countSmaller++;
+            else if (nums[i] == pivot) countEqual++;
+        }
+
+        int smallerIdx = 0;
+        int equalIdx = countSmaller;
+        int largerIdx = countSmaller + countEqual;
+
+        for(int i = 0; i < n; i++){
+            if(nums[i] < pivot){
+                ans[smallerIdx] = nums[i];
+                smallerIdx++;
+            } else if (nums[i] == pivot){
+                ans[equalIdx] = nums[i];
+                equalIdx++;
+            } else {
+                ans[largerIdx] = nums[i];
+                largerIdx++;
+            }
+        }
+
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O (n)
+// Space Complexity -> O (1)
+
+// =========================================================================================
