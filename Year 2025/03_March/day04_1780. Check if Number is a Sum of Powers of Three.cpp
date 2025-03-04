@@ -25,3 +25,34 @@ public:
 // SPace Complexity -> O(log3(n))
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    bool checkPowersOfThree(int n) {
+        int exponent = 0;
+        while(pow(3, exponent) < n){
+            exponent++;
+        }
+
+        while(n > 0){
+            if(n >= pow(3, exponent)){
+                n -= pow(3, exponent);
+            }
+
+            if (n >= pow(3, exponent)) return false;
+
+            exponent--;
+        }
+
+        return true;
+    }
+};
+
+
+// Time Complexity -> O(log3(n))
+// SPace Complexity -> O(1)
+
+// =========================================================================================
