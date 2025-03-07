@@ -39,3 +39,40 @@ public:
 // SPace Complexity -> O(n^2)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
+        int n = grid.size();
+        long long totalElements = n * n;
+        long long actualSum = 0;
+        long long actualSquareSum = 0;
+
+        for(int row = 0; row < n; row++){
+            for(int col = 0; col < n; col++){
+                actualSum += grid[row][col];
+                actualSquareSum += grid[row][col] * grid[row][col];
+            }
+        }
+
+        long long expectedSum = (totalElements * (totalElements + 1)) / 2;
+        long long expectedSquareSum = (totalElements * (totalElements + 1) * (2 * totalElements + 1)) / 6;
+
+        int squareDifference = actualSquareSum - expectedSquareSum;
+        int sumDifference = actualSum - expectedSum;
+
+        int repeatedValue = (squareDifference / sumDifference + sumDifference) / 2; 
+        int missingValue = (squareDifference / sumDifference - sumDifference) / 2;
+
+        return {repeatedValue, missingValue};
+    }
+};
+
+
+// Time Complexity -> O(n^2)
+// SPace Complexity -> O(1)
+
+// =========================================================================================
