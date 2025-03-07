@@ -53,3 +53,55 @@ public:
 // SPace Complexity -> O(R)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    bool checkPrime(int num) {
+        if (num == 1) { 
+            return false;
+        }
+        for (int divisor = 2; divisor * divisor <= num; divisor++) {
+            if (num % divisor == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
+    vector<int> closestPrimes(int left, int right) {
+        vector<int> primeNums;
+
+        for (int num = left; num <= right; num++) {
+            if (checkPrime(num) == true) {
+                if (!primeNums.empty() && num - primeNums.back() <= 2) {
+                    return {primeNums.back(), num};
+                }
+
+                primeNums.push_back(num);
+            }
+        }
+
+        int minDiff = INT_MAX;
+        vector<int> closestPair = {-1, -1};
+
+        for (int i = 1; i < primeNums.size(); i++) {
+            int diff = primeNums[i] - primeNums[i - 1];
+            if (diff < minDiff) {
+                minDiff = diff;
+                closestPair = {primeNums[i - 1], primeNums[i]};
+            }
+        }
+
+        return closestPair;
+    }
+};
+
+
+// Time Complexity -> O((R-L) * sqrt(R))
+// SPace Complexity -> O(R - L)
+
+// =========================================================================================
