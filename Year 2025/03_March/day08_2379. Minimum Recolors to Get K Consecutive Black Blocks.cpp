@@ -29,3 +29,37 @@ public:
 // SPace Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    int minimumRecolors(string blocks, int k) {
+        int n = blocks.size();
+        int operationCount = INT_MAX;
+        int currWhiteCount = 0;
+        int left = 0, right = 0;
+
+        while(right < n) {
+            if(blocks[right] == 'W') currWhiteCount++;
+
+            if(right - left + 1 == k){
+                operationCount = min (operationCount, currWhiteCount);
+
+                if(blocks[left] == 'W') currWhiteCount--;
+                left++;
+            }
+
+            right++;
+        }
+
+        return operationCount;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// SPace Complexity -> O(1)
+
+// =========================================================================================
