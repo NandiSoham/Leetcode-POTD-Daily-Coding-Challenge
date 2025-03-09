@@ -73,3 +73,59 @@ public:
 // SPace Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    int numberOfAlternatingGroups(vector<int>& colors, int k) {
+        int n = colors.size();
+
+        int groupCount = 0;
+        int currLen = 1;
+        int prevColor = colors[0];
+
+        for(int i = 0; i < k - 1; i++){
+            colors.push_back(colors[i]);
+        }
+
+        for(int i = 0; i < n; i++){
+            if(colors[i] == prevColor){
+                currLen = 1;
+                prevColor = colors[i];
+                continue;
+            }
+            currLen++;
+
+            if(currLen >= k){
+                groupCount++;
+            }
+
+            prevColor = colors[i];
+        }
+
+        for(int i = 0; i < k - 1; i++){
+            if(colors[i] == prevColor){
+                currLen = 1;
+                prevColor = colors[i];
+                break;
+            }
+            currLen++;
+
+            if(currLen >= k){
+                groupCount++;
+            }
+
+            prevColor = colors[i];
+        }
+
+        return groupCount;
+    }
+};
+
+
+// Time Complexity -> O(n + k)
+// SPace Complexity -> O(1)
+
+// =========================================================================================
