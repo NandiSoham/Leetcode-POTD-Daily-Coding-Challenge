@@ -29,3 +29,35 @@ public:
 // SPace Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 (TLE) ====================================
+
+class Solution {
+public:
+    int numberOfSubstrings(string s) {
+        int n = s.length();
+        int subStrCount = 0;
+
+        for(int i = 0; i < n; i++){
+            int charPresent[3] = {0};
+
+            for(int j = i; j < n; j++){
+                charPresent[s[j] - 'a'] = 1;
+
+                if(charPresent[0] + charPresent[1] + charPresent[2] == 3){
+                    subStrCount += n - j;
+                    break;
+                }
+            }
+        }
+
+        return subStrCount;
+    }
+};
+
+
+// Time Complexity -> O(n^2)
+// SPace Complexity -> O(1)
+
+// =========================================================================================
