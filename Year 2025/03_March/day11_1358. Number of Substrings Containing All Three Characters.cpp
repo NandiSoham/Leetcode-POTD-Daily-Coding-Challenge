@@ -61,3 +61,30 @@ public:
 // SPace Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+    int numberOfSubstrings(string s) {
+        int lastSeenIdx[3] = {-1, -1, -1};
+        int subStrCount = 0;
+
+        for(int i = 0; i < s.size(); i++) {
+            lastSeenIdx[s[i] - 'a'] = i;
+
+            if(lastSeenIdx[0] != -1 && lastSeenIdx[1] != -1 && lastSeenIdx[2] != -1){
+                subStrCount += 1 + min({lastSeenIdx[0], lastSeenIdx[1], lastSeenIdx[2]});
+            }
+        }
+
+        return subStrCount;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// SPace Complexity -> O(1)
+
+// =========================================================================================
