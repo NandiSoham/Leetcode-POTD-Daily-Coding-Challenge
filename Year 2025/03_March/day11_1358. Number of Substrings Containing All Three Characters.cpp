@@ -88,3 +88,37 @@ public:
 // SPace Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 4 ====================================
+
+class Solution {
+public:
+    int numberOfSubstrings(string s) {
+        int n = s.length();
+        int subStrCount = 0;
+        vector<int> charFreq(3, 0);
+        int i = 0, j = 0;
+
+        while(j < n) {
+            char currChar = s[j];
+            charFreq[currChar - 'a']++;
+
+            while(charFreq[0] > 0 && charFreq[1] > 0 && charFreq[2] > 0) {
+                subStrCount += n - j;
+                charFreq[s[i] - 'a']--;
+                i++;
+            }
+
+            j++;
+        }
+
+        return subStrCount;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// SPace Complexity -> O(1)
+
+// =========================================================================================
