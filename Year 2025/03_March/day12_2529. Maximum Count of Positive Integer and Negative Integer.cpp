@@ -49,3 +49,24 @@ public:
 // SPace Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+    int maximumCount(vector<int>& nums) {
+        int n = nums.size();
+
+        int firstPosIdx = lower_bound(nums.begin(), nums.end(), 1) - nums.begin();
+        int firstNegIdx = lower_bound(nums.begin(), nums.end(), 0) - nums.begin();
+
+        return max(n - firstPosIdx, firstNegIdx);
+    }
+};
+
+
+// Time Complexity -> O(log(n))
+// SPace Complexity -> O(1)
+
+// =========================================================================================
