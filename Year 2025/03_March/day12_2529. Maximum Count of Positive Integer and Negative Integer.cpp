@@ -21,3 +21,31 @@ public:
 // SPace Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 2 ====================================
+
+class Solution {
+public:
+    int maximumCount(vector<int>& nums) {
+
+        auto lambdaIsPositive = [](int num) {
+            return num > 0;
+        };
+
+        auto lambdaIsNegative = [](int num) {
+            return num < 0;
+        };
+
+        int positiveCount = count_if(nums.begin(), nums.end(), lambdaIsPositive);
+        int negativeCount = count_if(nums.begin(), nums.end(), lambdaIsNegative);
+
+        return max(positiveCount, negativeCount);
+    }
+};
+
+
+// Time Complexity -> O(n)
+// SPace Complexity -> O(1)
+
+// =========================================================================================
