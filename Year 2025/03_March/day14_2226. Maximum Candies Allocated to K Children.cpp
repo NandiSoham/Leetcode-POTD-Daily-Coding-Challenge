@@ -28,3 +28,36 @@ public:
 
 
 // =============================================================================================================
+
+
+// ======================================= Approach - 2 (Brute Force - TLE) ====================================
+
+class Solution {
+public:
+    int maximumCandies(vector<int>& candies, long long k) {
+        int n = candies.size();
+        int maxCandies = 0;
+        int totalCount = 0;
+
+        for(int i = 0; i < n; i++){
+            totalCount += candies[i];
+            maxCandies = max(maxCandies, candies[i]);
+        }
+
+        if(totalCount < k) return 0;
+
+        for(int candy = maxCandies; candy >= 1; candy--){
+            long long count = 0;
+
+            for(int i = 0; i < n; i++){
+                count += candies[i] / candy;
+            }
+
+            if(count >= k) return candy;
+        }
+
+        return 0;
+    }
+};
+
+// =============================================================================================================
