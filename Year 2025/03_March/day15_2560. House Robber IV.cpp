@@ -36,3 +36,49 @@ public:
 // Space Complexity -> O(n * k)
 
 // =============================================================================================================
+
+
+// ================================================ Approach - 2 ================================================
+
+class Solution {
+public:
+    bool canRobKthHouses(vector<int>& nums, int capacity, int k) {
+        int robbedHouses = 0;
+        for(int i = 0; i < nums.size(); i++) {
+            if(nums[i] <= capacity) {
+                robbedHouses++;
+                i++; 
+            }
+        }
+
+        return robbedHouses >= k; 
+    }
+    
+    int minCapability(vector<int>& nums, int k) {
+        int size = nums.size();
+
+        int left = *min_element(nums.begin(), nums.end());
+        int right = *max_element(nums.begin(), nums.end());
+
+        int result = right;
+
+        while(left <= right) {
+            int mid = left + (right - left) / 2; 
+
+            if(canRobKthHouses(nums, mid, k) == true) {
+                result = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return result;
+    }
+};
+
+
+// Time Complexity -> O(N∗Log(Max(Nums))
+// Space Complexity -> O(1)
+
+// =============================================================================================================
