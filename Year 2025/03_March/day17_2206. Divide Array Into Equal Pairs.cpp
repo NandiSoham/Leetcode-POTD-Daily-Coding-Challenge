@@ -22,3 +22,31 @@ public:
 // Space Complexity -> O(1)
 
 // =============================================================================================================
+
+
+// ============================================= Approach - 2 (Map) ============================================
+
+class Solution {
+public:
+    bool divideArray(vector<int>& nums) {
+        unordered_map<int, int> freqMap;
+
+        for(int num : nums){
+            freqMap[num]++;
+        }
+
+        for(auto it : freqMap){
+            if(it.second % 2 != 0){
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(n)
+
+// =============================================================================================================
