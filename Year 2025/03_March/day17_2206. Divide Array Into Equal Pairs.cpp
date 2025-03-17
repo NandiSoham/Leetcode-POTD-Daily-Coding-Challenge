@@ -52,7 +52,7 @@ public:
 // =============================================================================================================
 
 
-// ======================================= Approach - 2 (Bit Manipulation) =====================================
+// ======================================= Approach - 3 (Bit Manipulation) =====================================
 
 class Solution {
 public:
@@ -80,5 +80,31 @@ public:
 
 // Time Complexity -> O(n)
 // Space Complexity -> O(maxNum)
+
+// =============================================================================================================
+
+
+// =============================================== Approach - 4 (Set) ==========================================
+
+class Solution {
+public:
+    bool divideArray(vector<int>& nums) {
+        unordered_set<int> pairCheckSet;
+
+        for(int num : nums){
+            if(pairCheckSet.count(num)){
+                pairCheckSet.erase(num);
+            } else {
+                pairCheckSet.insert(num);
+            }
+        }
+
+        return pairCheckSet.empty();
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(n)
 
 // =============================================================================================================
