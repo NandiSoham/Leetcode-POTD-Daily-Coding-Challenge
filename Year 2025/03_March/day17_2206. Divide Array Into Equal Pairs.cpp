@@ -50,3 +50,35 @@ public:
 // Space Complexity -> O(n)
 
 // =============================================================================================================
+
+
+// ======================================= Approach - 2 (Bit Manipulation) =====================================
+
+class Solution {
+public:
+    bool divideArray(vector<int>& nums) {
+        int maxNum = 0;
+        for(int num : nums){
+            maxNum = max(maxNum, num);
+        }
+
+        vector<bool> pairCheck(maxNum + 1, false);
+        for(int num : nums){
+            pairCheck[num] = !pairCheck[num];
+        }
+
+        for(int num : nums){
+            if(pairCheck[num] == true){
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(maxNum)
+
+// =============================================================================================================
