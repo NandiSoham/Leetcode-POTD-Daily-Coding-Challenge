@@ -71,3 +71,36 @@ public:
 // Space Complexity -> O(1)
 
 // =========================================================================================
+
+
+// ======================================= Approach - 3 ====================================
+
+class Solution {
+public:
+    int longestNiceSubarray(vector<int>& nums) {
+        int n = nums.size();
+        int maxLen = 0;
+        int bitMask = 0;
+        int left = 0, right = 0;
+
+        while(right < n){
+            
+            while((bitMask & nums[right]) != 0){
+                bitMask = (bitMask ^ nums[left]);
+                left++;
+            }
+
+            maxLen = max(maxLen, right - left + 1);
+            bitMask = (bitMask | nums[right]);
+            right++;
+        }
+
+        return maxLen;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// =========================================================================================
