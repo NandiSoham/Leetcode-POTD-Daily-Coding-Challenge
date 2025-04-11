@@ -31,4 +31,38 @@ public:
 };
 
 
+// Time Complexity -> O(high-low+1) * n [n = number of digits]
+// Space Complexity -> O(n)
+
 // =============================================================================
+
+
+// ================================= Approach - 2 ==============================
+
+class Solution {
+public:
+    int countSymmetricIntegers(int low, int high) {
+        int symmetryCount = 0;
+
+        for(int currNum = low; currNum <= high; currNum++){
+            if(currNum >= 10 && currNum <= 99 && currNum % 11 == 0){
+                symmetryCount++;
+            } else if(currNum >= 1000 && currNum <= 9999){
+                int digit1 = currNum / 1000;
+                int digit2 = (currNum / 100) % 10;
+                int digit3 = (currNum / 10) % 10;
+                int digit4 = (currNum / 1) % 10;
+
+                if(digit1 + digit2 == digit3 + digit4) {
+                    symmetryCount++;
+                }
+            }
+        }
+
+        return symmetryCount;
+    }
+};
+
+
+// Time Complexity -> O(high-low+1)
+// Space Complexity -> O(1)
