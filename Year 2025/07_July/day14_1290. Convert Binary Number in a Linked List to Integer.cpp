@@ -35,3 +35,29 @@ public:
 
 // Time Complexity -> O(n)
 // Space complexity -> O(1)
+
+// ==========================================================================
+
+// ========================== Approach - 2 ========================
+
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        int result = 0;
+
+        while(head) {
+            result = (result << 1) | (head->val);
+
+            head = head->next;
+        }        
+        return result;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space complexity -> O(1)
+
+// ==========================================================================
+
+
