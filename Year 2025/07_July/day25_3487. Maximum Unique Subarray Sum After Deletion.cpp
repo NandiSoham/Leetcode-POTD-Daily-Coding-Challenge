@@ -23,3 +23,28 @@ public:
 };
 
 // ==================================================================================
+
+
+// ================================== Approach - 2 ==================================
+
+class Solution {
+public:
+    int maxSum(vector<int>& nums) {
+        vector<int> arr(101, -1);
+        int maxNeg = INT_MIN;
+        int sum  = 0;
+
+        for(int &it : nums){
+            if(it <= 0){
+                maxNeg = max(maxNeg, it);
+            } else if(arr[it] == -1){
+                sum += it;
+                arr[it] = 1;
+            }
+        }
+
+        return sum == 0 ? maxNeg : sum;
+    }
+};
+
+// ==================================================================================
