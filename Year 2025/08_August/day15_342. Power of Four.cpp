@@ -40,3 +40,21 @@ public:
 // Time Complexity -> O(log₄ n)
 // Space Complexity -> O(log₄ n)
 // ==============================================================================================
+
+
+// ======================================== Approach - 2 ========================================
+
+class Solution {
+public:
+    bool isPowerOfFour(int n) {
+        if(n <= 0) return false;
+        double x = (log10(n) / log10(4));
+
+        return x == int(x);
+    }
+};
+
+
+// Time Complexity -> O(1)
+// Space Complexity -> O(1)
+// ==============================================================================================
