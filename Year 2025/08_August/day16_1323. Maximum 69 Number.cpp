@@ -23,3 +23,36 @@ public:
 // Space Complexity -> O(1)
 
 // ==================================================================================
+
+
+// ================================== Approach - 2 ==================================
+
+class Solution {
+public:
+    int maximum69Number (int num) {
+        int digitPos = 0;
+        int leftMostSixPos = -1;
+        int temp = num;
+
+        while(temp > 0){
+            int remainder = temp % 10;
+
+            if(remainder == 6){
+                leftMostSixPos = digitPos;
+            }
+
+            temp /= 10;
+            digitPos++;
+        }
+
+        if(leftMostSixPos == -1) return num;
+
+        return num + 3*pow(10, leftMostSixPos);
+    }
+};
+
+
+// Time Complexity -> O(d)
+// Space Complexity -> O(1)
+
+// ==================================================================================
