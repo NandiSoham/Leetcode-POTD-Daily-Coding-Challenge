@@ -31,5 +31,5 @@ public:
 };
 
 
-// Time Complexity -> O()
-// Space Complexity -> O()
+// Time Complexity -> O((num1 / num2) log (num1)
+// Space Complexity -> O(1)
