@@ -49,3 +49,41 @@ public:
 // Space Complexity -> O(n)
 
 // =====================================================================================
+
+
+// ==================================== Approach - 2 ===================================
+
+class Solution {
+public:
+    int countValidSelections(vector<int>& nums) {
+        int n = nums.size();
+        int ans = 0;
+        int currSum = 0;
+        int totalSum = accumulate(begin(nums), end(nums), 0);
+
+        for(int i = 0; i < n; i++) {
+            currSum += nums[i]; 
+
+            int leftSum  = currSum;
+            int rightSum = totalSum - leftSum;
+
+            if(nums[i] != 0) {
+                continue;
+            }
+
+            if(leftSum == rightSum)
+                ans += 2;
+            
+            if(abs(leftSum - rightSum) == 1)
+                ans += 1;
+        }
+
+        return ans;
+    }
+};
+
+
+// Time Complexity -> O(n)
+// Space Complexity -> O(1)
+
+// =====================================================================================
